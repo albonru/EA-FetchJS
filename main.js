@@ -103,7 +103,23 @@ const lettersMap = () => {
       .then(json => {
         let temp = json.map(user => user.id * num)
         console.log(temp)
-        return temp;
+        let temp2 = temp.map(id => id/2)
+        console.log(temp2)
+        let temp3 = temp2.sort((u1,u2) => u1 < u2 ? 1 : -1)
+        console.log(temp3)
       })
   }
-  let temp2 = testReturn(3);
+  //testReturn(3);
+
+  const testReturn2 = (num) => {
+    fetch(`${url}/users`)
+      .then(response => response.json())
+      .then(json => {
+        let temp = json.map(user => user.id * num)
+        .map(id => id/2)
+        .filter(id => id < 10)
+        .sort((u1,u2) => u1 < u2 ? 1 : -1)
+        console.log(temp)
+      })
+  }
+  testReturn2(3);
