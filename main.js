@@ -79,19 +79,31 @@ const lettersMap = () => {
   const doubleIdMap = () => {
     fetch(`${url}/users`)
       .then(response => response.json())
-      .then(json => json.map(user => console.log(user.id * 2)))
+      .then(json => console.log(json.map(user => user.id * 2)))
   }
 
   // filter
   const filterId = () => {
     fetch(`${url}/users`)
       .then(response => response.json())
-      .then(json => json.filter(user => console.log(`${user.name} : ${user.id > 5}`)))
+      .then(json => console.log(json.filter(user => user.id > 5)))
   }
 
   // sort
   const sortName = () => {
     fetch(`${url}/users`)
       .then(response => response.json())
-      .then(json => json.sort((u1, u2) => console.log(u1.name > u2.name ? 1 : -1)))
+      .then(json => console.log(json.sort((u1, u2) => u1.name > u2.name ? 1 : -1)))
   }
+
+  // mes tests
+  const testReturn = (num) => {
+    fetch(`${url}/users`)
+      .then(response => response.json())
+      .then(json => {
+        let temp = json.map(user => user.id * num)
+        console.log(temp)
+        return temp;
+      })
+  }
+  let temp2 = testReturn(3);
